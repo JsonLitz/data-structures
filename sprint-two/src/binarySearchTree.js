@@ -20,7 +20,6 @@ BinarySearchTree.prototype.insert = function (value) {
       recursor(binarySearch.right);
     }
   }
-
   recursor(this);
 };
 
@@ -52,6 +51,5 @@ BinarySearchTree.prototype.depthFirstLog = function (callback) {
       recursor(binarySearch.right);
     }
   }
-
   recursor(this);
 };
