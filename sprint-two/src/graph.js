@@ -6,8 +6,6 @@ var Node = function (value) {
 // Instantiate a new graph
 var Graph = function() {
   this.nodes = [];
-  //this.=
-  //this.
 };
 
 // Add a node to the graph, passing in the node's value.
