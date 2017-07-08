@@ -1,9 +1,8 @@
-var Node = function(value) {
+var Node2 = function(value) {
   var node = {};
-
   node.value = value;
   node.next = null;
-
+  console.log(value);
   return node;
 };
 
@@ -11,22 +10,13 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
-
   list.addToTail = function(value) {
-    //  if () {
-
-    // TODO: check lastNode later
-
-      // var lastNode = Node(value);
-      // list.tail = lastNode;
-    //  }
-
     if (this.head === null) { // if there is no head then we assume list{} is empty
-      this.head = Node(value);//create new node, and set it equal to this.head
+      this.head = Node2(value);//create new node, and set it equal to this.head
       this.tail = this.head;//since the list is empty, this.head will also equal this.tail
     } else {
-      var prevTail = this.tail//we get ready to change over the current tail
-      this.tail = Node(value);//this.tail is reassigned to a new obj
+      var prevTail = this.tail;//we get ready to change over the current tail
+      this.tail = Node2(value);//this.tail is reassigned to a new obj
       prevTail.next = this.tail;//we change the next property on the previous tail to point it at the new tail
     }
 
@@ -45,8 +35,8 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    for (var currentNode = this.head; currentNode !== this.tail; currentNode = currentNode.next) {
-      if (currentNode.value === target) {
+    for (var currentNode2 = this.head; currentNode2 !== this.tail; currentNode2 = currentNode2.next) {
+      if (currentNode2.value === target) {
         return true;
       }
     }
@@ -55,17 +45,6 @@ var LinkedList = function() {
     } else {
       return false;
     }
-
   };
-
   return list;
 };
-
-
-/*
- * Complexity: What is the time complexity of the above functions?
-
- addToTail : O(1)
- removeHead : O(1)
- contains : O(n)
- */
