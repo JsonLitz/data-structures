@@ -14,28 +14,33 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  if (this.value === target){
+  var found = [];
+  containsInner(this, target, found);
+  if (found.length !==0){
     return true;
-  }
-  if (this.value !== target && this.children.length > 0){
-    for (var i = 0; i < this.children.length; i++){
-      return this.children[i].contains(target);
-    }
-  }else{
-    return false
+  }else {
+    return false;
   }
 };
 
+
+  function containsInner(currentNode, target, array){
+    for (var i = 0; i < currentNode.children.length; i++){
+      if (currentNode.children[i].value === target ){
+        array.push(true);
+        return;
+      }
+    }
+    for(var i =0; i < currentNode.children.length; i++){
+       containsInner(currentNode.children[i], target, array)
+    }
+  }
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
 
-
- //
- //
- //
  // var Tree = function(value) {
  //   var newTree = {};
  //   newTree.value = value;
