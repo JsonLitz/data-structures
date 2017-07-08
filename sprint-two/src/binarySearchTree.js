@@ -1,28 +1,57 @@
 var BinarySearchTree = function(value) {
-  var newTree = Object.create(methods);
-  newTree.value = value;
-  newTree.left = null;
-  newTree.right = null;
-  return newTree
+  var instance = Object.create(BinarySearchTree.prototype);
+    instance.value = value;
+    instance.right = null;
+    instance.left = null;
+
+  return instance;
 };
-var methods = {}
 
-methods.insert = function (num) {
-  var node = BinarySearchTree(num)
-  debugger;
-  function reCheck(sup){
-    if(this.value > sup){
-      
+BinarySearchTree.prototype.insert = function (value) {
+  var node = BinarySearchTree(value);
+  function recursor(binarySearch) {
+    if (binarySearch.value > value && binarySearch.left === null) {
+      binarySearch.left = node;
+    } else if (binarySearch.value > value) {
+      recursor(binarySearch.left);
+    } else if (binarySearch.value < value && binarySearch.right === null) {
+      binarySearch.right = node;
+    } else if (binarySearch.value < value) {
+      recursor(binarySearch.right);
     }
-}
+  }
 
-methods.contains = function () {
+  recursor(this);
+};
 
-}
+BinarySearchTree.prototype.contains = function (value) {
+  var doesContain = false;
+  //accepts a value and returns a boolean reflecting whether or not the value is contained in the tree.
+  function recursor(binarySearch) {
+    if (binarySearch.value === value) {
+      doesContain = true;
+    } else if (binarySearch.left !== null && value < binarySearch.value) {
+      recursor(binarySearch.left);
+    } else if (binarySearch.right !== null && value > binarySearch.value) {
+      recursor(binarySearch.right);
+    }
+  }
+  recursor(this);
+  return doesContain;
+};
 
-methods.depthFirstLog = function () {
+BinarySearchTree.prototype.depthFirstLog = function (callback) {
+  function recursor(binarySearch) {
+    callback.call(binarySearch, binarySearch.value);
 
-}
-/*
- * Complexity: What is the time complexity of the above functions?
- */
+    if (binarySearch.left !== null) {
+      recursor(binarySearch.left);
+    }
+
+    if (binarySearch.right !== null) {
+      recursor(binarySearch.right);
+    }
+  }
+
+  recursor(this);
+};
